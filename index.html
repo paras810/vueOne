@@ -10,22 +10,10 @@
 <body>
     <div id="app" v-cloak>
         
-        {{greeting}}
-        <!-- <input  v-model="greeting"> -->
-        <input v-model="greeting" @keyup.enter="greet(greeting)">
-        <!-- <input v-model="greeting" v-on.backspace="toggleBox()"> -->
-        <!-- <input v-model="greeting" v-on.backspace="toggleBox()"> -->
-
-
-        <!-- <button v-on:click="isVisible = !isVisible">Show box</button> -->
-        <button @click="toggleBox()" >Show box</button>
-        <div class="box" v-if="isVisible"></div>
+      <login-form/>
   
-        <form >
-            <input type="text" name="name" id="name">
-            <!-- click.prevent.stop will not allow to reload the page -->
-            <button @click.prevent.stop>login</button>
-        </form>
+      
+       
 
     </div>
 
