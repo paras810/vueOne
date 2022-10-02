@@ -1,0 +1,19 @@
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 34, 0);
+}
+.two{
+    width: 100px;
+    height: 100px;
+    background-color: blue; 
+}
+.three{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(14, 221, 24); 
+}
+
+[v-cloak]{
+    display: none;
+}
