@@ -1,28 +1,61 @@
-const app = Vue.createApp({
-
-})
-app.component('login-form', {
-    template: `
+const app = Vue.createApp({});
+app.component("login-form", {
+  template: `
     <form @submit.prevent.stop="handleSub() ">
       <h1>{{title}}</h1>
             
-        <input type="text" :placeholder="form_Name" v-model="form_Name"><br><br>
-        <input type="text" :placeholder="form_Mail" v-model="form_Mail"><br><br>
+        <input-form v-model="email"  
+        :label="emailLabel" />
+        <br><br>
+        <input-form v-model="password"
+        :label="passwordLabel" /><br><br>
         <button>Submit</button>
       </form>
     `,
-    data() {
-        return {
-            title: "Login form",
-            form_Name:'Name',
-            form_Mail:'Email'
-        }
+  components: ["input-form"],
+  data() {
+    return {
+      title: "Login form",
+      email: "hhh",
+      password: "ddd",
+      emailLabel: "Email",
+      passwordLabel: "Password",
+    };
+  },
+  methods: {
+    handleSub() {
+      alert("form submitted");
+      console.warn(this.email, " ", this.password);
     },
-    methods: {
-        handleSub(){
-            alert('form submitted')
-            console.warn(this.form_Name, " ", this.form_Mail)
-        }
+  },
+});
+
+app.component("input-form", {
+  template: `
+  <label >{{label}}
+  <input type="text" v-model="inputVal">
+  
+</label>
+  `,
+props:['label','modelValue'],
+computed: {
+  inputVal:{
+    get(){
+      console.log('get function')
+      return this.modelValue;
     },
-})
-app.mount("#app")
+    set(value){
+    //  console.log('set function')
+   
+    this.$emit('update:modelValue',value)
+    }
+  }
+}
+,
+// data(){
+//   return{
+//     inputVal: ''
+//   }
+// }
+});
+app.mount("#app");
