@@ -3,12 +3,15 @@ app.component("login-form", {
   template: `
     <form @submit.prevent.stop="handleSub() ">
       <h1>{{title}}</h1>
-            
-        <input-form v-model="email"  
-        :label="emailLabel" />
+
+        <input-form
+        v-for="item,i in inputs"
+        :key="i"
+         v-model="item.value"  
+        :label="item.label"
+        :type="item.type" />
         <br><br>
-        <input-form v-model="password"
-        :label="passwordLabel" /><br><br>
+
         <button>Submit</button>
       </form>
     `,
@@ -16,16 +19,24 @@ app.component("login-form", {
   data() {
     return {
       title: "Login form",
-      email: "hhh",
-      password: "ddd",
-      emailLabel: "Email",
-      passwordLabel: "Password",
+      inputs:[
+        {
+          label:'Email: ',
+          value:'',
+          type:'email'
+        },
+        {
+          label:'Password: ',
+          value:'',
+          type:'password'
+        }
+      ]
     };
   },
   methods: {
     handleSub() {
-      alert("form submitted");
-      console.warn(this.email, " ", this.password);
+      console.log("form submitted");
+      console.warn(this.inputs[0].value, this.inputs[1].value);
     },
   },
 });
@@ -33,11 +44,11 @@ app.component("login-form", {
 app.component("input-form", {
   template: `
   <label >{{label}}
-  <input type="text" v-model="inputVal">
+  <input :type="type" v-model="inputVal">
   
 </label>
   `,
-props:['label','modelValue'],
+props:['label','modelValue','type'],
 computed: {
   inputVal:{
     get(){
