@@ -10,15 +10,10 @@
 <body>
     <div id="app" v-cloak>
         
-      <login-form/>
-  
-      <label >{{label}}
-        <input type="text">
-      </label>
-       
+      <button @click="toggleBox">show/hide BOX</button>
+        <test-box class="box" v-if="isVisible"></test-box>
 
-    </div>
-
+    </div> 
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
      <script src="index.js"></script>
